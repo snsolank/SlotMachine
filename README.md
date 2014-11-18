@@ -1,4 +1,0 @@
-SlotMachine
-===========
-
-SlotMaching project
