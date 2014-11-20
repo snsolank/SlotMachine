@@ -4,6 +4,13 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 error_reporting(E_NOTICE ^ E_DEPRECATED);
 
 /*array_key_exists() function checks an array for a specified key.*/
+$hashedv = "";
+$spins = "";
+$pid = ""; 
+$svalue="";
+$name = "";
+$credits = "";
+
 if(array_key_exists('coinswon', $_POST)) {
 	$coinswon = $_POST['coinswon'];
 	
@@ -26,13 +33,6 @@ if(array_key_exists('hashedvalue', $_POST)) {
 $values = crypt($playerid,$hashedvalue);
 
 
-
-$hashedv = "";
-$credits = "";
-$spins = "";
-$pid = ""; 
-$svalue="";
-$name = "";
 	$conn = new mysqli("localhost","root","sam","Spin");   // connecting to database
 	if ($conn -> connect_error) 
 	{
@@ -63,15 +63,17 @@ $name = "";
 	/* variable used to access the hashed value in the database which takes in pid and svalue from database. */
 	$hashedv = crypt($pid,$svalue);
 	
+	$lifeavg = 0;
 	
+	$lifeavg = $credits/$spins;
 
-	$sqlquery = "Update Players SET Credits = ".$credits.", LifetimeSpins = ".$spins." where PlayerID = '".$playerid."'";
+	$sqlquery = "Update Players SET Credits = ".$credits.", LifetimeSpins = ".$spins.", LifetimeAvgReturn = ".$lifeavg." where PlayerID = '".$playerid."'";
 	if($hashedv == $values)
 	{ 
 		if($conn->query($sqlquery) === TRUE)
 		{
 		   
-			$jsonfeeds = "{'Player ID':".$playerid.",'Player Name':".$name.",'Credits':".$credits.",'Lifetime Spins':".$spins."}";
+			$jsonfeeds = "{'Player ID':".$playerid.",'Player Name':".$name.",'Credits':".$credits.",'Lifetime Spins':".$spins.",'Lifetime Average Return':".$lifeavg."}";
 			header('Content-Type: application/json');
 			echo json_encode($jsonfeeds);
 		}

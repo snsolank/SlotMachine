@@ -1,0 +1,14 @@
+Name: Samarth Solanki
+
+➢	There are two php files in my project named Assignment. 
+1) db.php
+2) form.php
+➢	The player ID value in database is “Samarth”
+➢	The Salt value is “thisisatest12345678123” which is known by the player, according to the assignment.
+➢	I have used blowfish algorithm to implement the hash value. 
+➢	The hash value and player ID data submitted through client request is compared with the hash value and player ID data stored in the database, if they are same, the player data in MySQL is updated and JSON response with updated information is created.
+➢	The form.php is an html form, which initially prompts the user to input PlayerID, then clickon “View Your Total Credits” button, which will direct the player to another html form. Now, if the number of credit are “Zero”, this html form will prompt the user to add the credits. After the credits are added, player will be directed to another html form where the player can see number of credits he has, and the player would be prompted to input values for Coins Won and Coins Bet.
+➢	Based on number of credits and number of spins, Lifetime average return for the player is then calculated which can be seen in JSON response in db.php
+➢	The PlayerID field has a value “Samarth”, any other value will throw an error “Data no Valid”.
+➢	I have used free, open source tool called phpMyAdmin to create database named ‘Spin’ with the table name ‘Players’.
+
